@@ -6,30 +6,22 @@ terraform {
   }
 }
 
-provider "mso" {
-  username = "admin"
-  password = "ins3965!ins3965!"
-  url      = "https://173.36.219.193/"
-  insecure = true
-}
-
-
-resource "mso_schema_site_anp_epg_static_port" "this" {
-    schema_id            = "60848ac2520000aae262ce00"
-    site_id              = "601a89a35000004b010dc247"
-    template_name        = "Template1"
-    anp_name             = "ANP"
-    epg_name             = "DB"
-    path_type            = "port"
-    deployment_immediacy = "lazy"
-    pod                  = "pod-4"
-    leaf                 = "106"
-    path                 = each.value
-    for_each             = toset(var.paths)
-    vlan                 = 200
-    micro_seg_vlan       = 3
-    mode                 = "untagged"
-    fex                  = "10"
+module "mso_schema_site_anp_epg_static_ports" "this" {
+  for_each             = toset(var.paths)
+  schema_id            = var.schema_id
+  site_id              = var.site_id
+  template_name        = var.template_name
+  anp_name             = var.anp_name
+  epg_name             = var.epg_name
+  path_type            = var.path_type
+  deployment_immediacy = var.deployment_immediacy
+  pod                  = var.pod
+  leaf                 = var.leaf
+  path                 = each.value
+  vlan                 = var.vlan
+  micro_seg_vlan       = var.micro_seg_vlan
+  mode                 = var.mode
+  fex                  = var.fex
 }
 
 // Need below two commands for execution.
