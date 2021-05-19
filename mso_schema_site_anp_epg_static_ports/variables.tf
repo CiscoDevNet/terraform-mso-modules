@@ -1,7 +1,3 @@
-variable "mso_username" {}
-variable "mso_password" {}
-variable "mso_url" {}
-
 variable "site_id" {
   type    = string
   description = "SiteID under which you want to deploy Static Port."
