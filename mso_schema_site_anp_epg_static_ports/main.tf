@@ -6,7 +6,7 @@ terraform {
   }
 }
 
-module "mso_schema_site_anp_epg_static_ports" "this" {
+resource "mso_schema_site_anp_epg_static_port" "this" {
   for_each             = toset(var.paths)
   schema_id            = var.schema_id
   site_id              = var.site_id
@@ -23,8 +23,3 @@ module "mso_schema_site_anp_epg_static_ports" "this" {
   mode                 = var.mode
   fex                  = var.fex
 }
-
-// Need below two commands for execution.
-
-// terraform apply -var-file=terraform.tfvars --parallelism=1
-// terraform destroy --parallelism=1
