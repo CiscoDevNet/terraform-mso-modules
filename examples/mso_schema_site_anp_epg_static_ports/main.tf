@@ -7,10 +7,9 @@ terraform {
 }
 
 provider "mso" {
-  username = "admin"
-  password = "ins3965!ins3965!"
-  url      = "https://10.23.248.82/"
-  // url = ["https://10.0.0.1"]
+  username = "someusername"
+  password = "somepassword"
+  url      = "https://10.0.0.1"
   insecure = true
 }
 
@@ -19,8 +18,7 @@ resource "mso_site" "site_test" {
   username         = var.site_username
   password         = var.site_password
   apic_site_id     = 105
-  urls             = ["https://10.23.248.103"]
-  // urls = ["https://10.0.0.2"]
+  urls             = ["https://10.0.0.2"]
   location = {
     lat  = 78.946
     long = 95.623
@@ -138,15 +136,10 @@ module "mso_schema_site_anp_epg_static_ports_2" {
   template_name        = mso_schema.schema_test.template_name
   anp_name             = mso_schema_site_anp_epg.epg2.anp_name
   epg_name             = mso_schema_site_anp_epg.epg2.epg_name
-  path_type            = var.path_type
-  deployment_immediacy = var.deployment_immediacy
   pod                  = var.pod
   leaf                 = var.leaf
   paths                = var.paths
   vlan                 = var.vlan
-  micro_seg_vlan       = var.micro_seg_vlan
-  mode                 = var.mode
-  fex                  = var.fex
 }
 
 

@@ -25,11 +25,13 @@ variable "epg_name" {
 
 variable "path_type" {
   type    = string
+  default = "port"
   description = "The type of the static port. Allowed values are port, vpc and dpc."
 }
 
 variable "deployment_immediacy" {
   type    = string
+  default = "lazy"
   description = "The deployment immediacy of the static port. Allowed values are immediate and lazy."
 }
 
@@ -50,16 +52,19 @@ variable "vlan" {
 
 variable "micro_seg_vlan" {
   type    = number
+  default = null
   description = "The microsegmentation VLAN id of the static port."
 }
 
 variable "mode" {
   type    = string
+  default = "regular"
   description = "The mode of the static port. Allowed values are native, regular and untagged."
 }
 
 variable "fex" {
   type    = string
+  default = null
   description = "Fex-id to be used. This parameter will work only with the path_type as port."
 }
 
